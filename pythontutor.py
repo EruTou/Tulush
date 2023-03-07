@@ -102,4 +102,4 @@ def fib(n):  # 6
     else:
         return fib(n - 1) + fib(n - 2)
 
-print(fib(int(input())))  # 8
+print(fib(int(input())))  # 8 - answer
