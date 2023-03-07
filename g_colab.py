@@ -7,7 +7,6 @@
 а возвращает результат. Предусмотрите предупреждение об ошибке при делении на 0.
 '''
 
-
 def calc(a, b, operation):
     if operation == "+" or operation == "sum":
         print((lambda a, b: a+b)(a, b))
@@ -23,7 +22,6 @@ def calc(a, b, operation):
             print("You can't divide by zero")
         else:
             print((lambda a, b: a/b)(a, b))
-
 
 for i in range(5):
     a = int(input("Enter the a: "))
@@ -61,11 +59,9 @@ for i in range(5):
 Пользоваться срезами в данном задании запрещено
 '''
 
-
 def reverse(text):
     res = ''.join(reversed(text))
     return res
-
 
 my_str = reverse(input())
 print(my_str)
@@ -79,14 +75,12 @@ print(my_str)
 если нет - то добавляет его в список и выдает : "Привет, <имя>! Рад знакомству!". Протестируйте ее на нескольких примерах
 '''
 
-
 def hello(name):
     if name in lst:
         return f"Hello, {name}!"
     else:
         lst.append(name)
         return f"Hello, {name}! Nice to meet you!"
-
 
 lst = ['Andrew', 'Matthew', 'James']
 for i in range(4):
@@ -111,12 +105,10 @@ for i in range(4):
 Создайте функцию count, которая выводит числа от 0 до 10. Решите эту задачу с помощью: а) цикла while б) с помощью рекурсии
 '''
 
-
 def count(a):
     while a < 11:
         print(a)
         a += 1
-
 
 count(0)
 
@@ -132,13 +124,11 @@ count(0)
 # 9
 # 10
 
-
 def count(a):
     print(a)
     if a == 10:
         return
     count(a+1)
-
 
 count(0)
 
@@ -159,7 +149,6 @@ count(0)
 Создайте функцию count, которая выводит количество четных и нечетных чисел от 0 до 10. Решите эту задачу с помощью: а) цикла while б) с помощью рекурсии
 '''
 
-
 def count(a):
     ev, od = 0, 0
     while a < 11:
@@ -171,15 +160,12 @@ def count(a):
     print(f"Amount of even numbers: {ev}")
     print(f"Amount of odd numbers: {od}")
 
-
 count(0)
 
 # Amount of even numbers: 6
 # Amount of odd numbers: 5
 
 ev, od = 0, 0
-
-
 def count(a, ev, od):
     if a == 11:
         print(f"Amount of even numbers: {ev}, \n amount of odd numbers: {od}")
@@ -189,7 +175,6 @@ def count(a, ev, od):
     else:
         od += 1
     count(a+1, ev, od)
-
 
 count(0, ev, od)
 
@@ -211,6 +196,7 @@ count(0, ev, od)
 5 + 8 = 13
 '''
 
+# this is the wrong answer. i will change this code
 
 def fib(n):  # 6
     if n == 0:  # first elem = 0, we count starting from zero
