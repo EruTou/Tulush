@@ -7,9 +7,7 @@
 а возвращает результат. Предусмотрите предупреждение об ошибке при делении на 0.
 '''
 
-
 import random
-
 
 def calc(a, b, operation):
     if operation == "+" or operation == "sum":
@@ -26,7 +24,6 @@ def calc(a, b, operation):
             print("You can't divide by zero")
         else:
             print((lambda a, b: a/b)(a, b))
-
 
 for i in range(5):
     a = int(input("Enter the a: "))
@@ -55,6 +52,7 @@ for i in range(5):
 # Enter the type of operation: /
 # You can't divide by zero
 
+
 '''
 Задание 2
 Создайте функцию reverse, которая принимает неограниченное число слов, а возвращает слово с развернутыми буквами. 
@@ -64,11 +62,9 @@ for i in range(5):
 Пользоваться срезами в данном задании запрещено
 '''
 
-
 def reverse(text):
     res = ''.join(reversed(text))
     return res
-
 
 my_str = reverse(input())
 print(my_str)
@@ -76,12 +72,12 @@ print(my_str)
 # my sotsawe meis
 # siem ewastos ym
 
+
 '''
 Задание 3
 Создайте функцию hello, которая запрашивает имя у пользователя. Если такое мя есть в списке - выдает : "Привет, <имя>!",
 если нет - то добавляет его в список и выдает : "Привет, <имя>! Рад знакомству!". Протестируйте ее на нескольких примерах
 '''
-
 
 def hello(name):
     if name in lst:
@@ -89,7 +85,6 @@ def hello(name):
     else:
         lst.append(name)
         return f"Hello, {name}! Nice to meet you!"
-
 
 lst = ['Andrew', 'Matthew', 'James']
 for i in range(4):
@@ -109,17 +104,16 @@ for i in range(4):
 # Mike
 # Hello, Mike!
 
+
 '''
 Задание 4
 Создайте функцию count, которая выводит числа от 0 до 10. Решите эту задачу с помощью: а) цикла while б) с помощью рекурсии
 '''
 
-
 def count(a):  # it's a
     while a < 11:
         print(a)
         a += 1
-
 
 count(0)
 
@@ -142,7 +136,6 @@ def count(a):  # it's b
         return
     count(a+1)
 
-
 count(0)
 
 # 0
@@ -157,11 +150,11 @@ count(0)
 # 9
 # 10
 
+
 '''
 Задание 4*
 Создайте функцию count, которая выводит количество четных и нечетных чисел от 0 до 10. Решите эту задачу с помощью: а) цикла while б) с помощью рекурсии
 '''
-
 
 def count(a):  # it's a
     ev, od = 0, 0
@@ -174,14 +167,13 @@ def count(a):  # it's a
     print(f"Amount of even numbers: {ev}")
     print(f"Amount of odd numbers: {od}")
 
-
 count(0)
 
 # Amount of even numbers: 6
 # Amount of odd numbers: 5
 
-ev, od = 0, 0
 
+ev, od = 0, 0
 
 def count(a, ev, od):  # it's b
     if a == 11:
@@ -193,11 +185,11 @@ def count(a, ev, od):  # it's b
         od += 1
     count(a+1, ev, od)
 
-
 count(0, ev, od)
 
 # Amount of even numbers: 6,
 #  amount of odd numbers: 5
+
 
 '''
 Задание 5*
@@ -215,7 +207,6 @@ count(0, ev, od)
 '''
 # i can't find the answer to this task
 
-
 def fib(n):  # it's b
     if n == 0:  # first elem = 0, we count starting from zero
         return 0
@@ -227,6 +218,7 @@ def fib(n):  # it's b
 
 print(fib(int(input())))
 
+
 '''
 Задание 6*
 Создайте функцию factorial, которая принимает число и вычисляет факториал этого числа. Факториал 5: 5! = 1 * 2 * 3 * 4 * 5
@@ -236,14 +228,12 @@ print(fib(int(input())))
 factorial = 1  # it's a
 count = 1
 
-
 def fact(n):
     global factorial, count
     while count <= n:
         factorial *= count
         count += 1
     return factorial
-
 
 print(fact(int(input("Please, enter your number: "))))
 
@@ -255,7 +245,6 @@ def fact(n):  # it's b
     if n == 0:
         return 1
     return fact(n - 1) * n
-
 
 print(fact(int(input("Please, enter your number: "))))
 
@@ -308,6 +297,7 @@ for i in range(3):
 Случайное число можно сгенерировать с помощью функции randint модуль random:
 '''
 
+import random
 
 def guessNumber(x, y, count):
     if count == 0:
@@ -326,7 +316,6 @@ def guessNumber(x, y, count):
     elif x == y:
         print(f'Вы отгадали число, поздравляем!!!')
         return
-
 
 beg, end = 0, 100
 rand_num = random.randint(0, 100)
