@@ -203,18 +203,22 @@ count(0, ev, od)
 3 + 5 = 8
 5 + 8 = 13
 '''
-# i can't find the answer to this task
 
-def fib(n):  # it's b
-    if n == 0:  # first elem = 0, we count starting from zero
-        return 0
-    if n == 1 or n == 2:  # second and third elem = 1
+# i can't find the answer to this task, i need some time
+
+n = 12
+for i in range(n):
+    print(fib(i))
+
+def fib(n = 3, lst = [0, 1, 1]):  # 12 - ый элемент равен 89 < 100
+    if lst[-1] == 89:
+        return lst
+    if n in (1, 2):
         return 1
-    else:
-        return fib(n - 1) + fib(n - 2)
+    lst.append(fib(n - 1) + fib(n - 2))
+    fib(n + 1, lst)
 
-
-print(fib(int(input())))
+print(fib())
 
 
 '''
