@@ -7,8 +7,6 @@
 а возвращает результат. Предусмотрите предупреждение об ошибке при делении на 0.
 '''
 
-import random
-
 def calc(a, b, operation):
     if operation == "+" or operation == "sum":
         print((lambda a, b: a+b)(a, b))
