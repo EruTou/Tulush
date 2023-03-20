@@ -204,21 +204,55 @@ count(0, ev, od)
 5 + 8 = 13
 '''
 
-# i can't find the answer to this task, i need some time
+def fibWhile(n = 2, lst = [0, 1]): # solved using while
+    print(*lst, sep="\n")
+    while lst[-1] != 89:
+        my_num = lst[n - 1] + lst[n - 2]
+        print(my_num)
+        lst.append(my_num)
+        n += 1
 
-n = 12
-for i in range(n):
-    print(fib(i))
+fibWhile()
 
-def fib(n = 3, lst = [0, 1, 1]):  # 12 - ый элемент равен 89 < 100
+#0
+#1
+#1
+#2
+#3
+#5
+#8
+#13
+#21
+#34
+#55
+#89
+
+
+def fibRecursion(n = 2, lst = [0, 1]): # solved using recursion
+    if lst == [0, 1]:
+        print(0, 1, sep="\n")
     if lst[-1] == 89:
-        return lst
-    if n in (1, 2):
-        return 1
-    lst.append(fib(n - 1) + fib(n - 2))
-    fib(n + 1, lst)
+        return
+    else:
+        my_num = lst[n - 1] + lst[n - 2]
+        print(my_num)
+        lst.append(my_num)
+    return fibRecursion(n + 1, lst)
 
-print(fib())
+fibRecursion()
+
+#0
+#1
+#1
+#2
+#3
+#5
+#8
+#13
+#21
+#34
+#55
+#89
 
 
 '''
