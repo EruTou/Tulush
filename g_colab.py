@@ -300,7 +300,8 @@ dct = {
     'Altair': 'Creed',
     'Ciri': 'Witcher'
 }
-for i in range(3):
+
+def sign_in():
     login = input('Введите логин: ')
     password = input('Введите пароль: ')
     if login in dct and password == dct.get(login):
@@ -311,6 +312,9 @@ for i in range(3):
         dct[login] = password
         print('Регистрация прошла успешно')
     print(dct)
+    
+for i in range(3):
+    sign_in()
 
 # Введите логин: Mike
 # Введите пароль: Chepolino
