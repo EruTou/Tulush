@@ -20,8 +20,8 @@ class trafficLight:
 
 traffic = trafficLight(color={
     "Red": 1,
-    "Yellow": 2,
-    "Green": 0.5
+    "Yellow": 0.5,
+    "Green": 2
 })
 traffic.changeColor()
 
