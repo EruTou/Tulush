@@ -1,38 +1,57 @@
 # Задание 1
-# Создайте класс cat и добавьте 3 атрибута (имя, окрас, возраст) и 3 метода класса
-# (мяукнуть, мурлыкать и еще один на ваше усмотрение).
-# Создайте 1 экземпляр класса и продемонстрируйте его атрибуты и методы.
+# Создайте родительский класс Animal, у которого есть 3 атрибута:
+#   color - цвет
+#   name - кличка
+#   age - возраст
+# и абстрактный метод:
+#   say - издать звук.
+# Создайте два класса потомка - Cat и Dog, в которых будет переопределен метод say: для класса Cat - Meow!, для Dog - Woof!
 # Решение:
 
-class Cat:
-    def __init__(self, name, color, age):
+from abc import ABC, abstractmethod
+
+
+class Animal(ABC):
+    def __init__(self, name, age, color):
         self.name = name
-        self.color = color
         self.age = age
+        self.color = color
 
-    def action_meow(self):
-        print('Мяяяууу!')
-
-    def action_purr(self):
-        print('Муррр...')
-
-    def action_growl(self):
-        print('Хсссссс!')
+    @abstractmethod
+    def say(self):
+        pass
 
 
-Miky = Cat('Miky', 'white-black', 1)
-print(Miky.name)
-print(Miky.color)
-print(Miky.age)
-Miky.action_meow()
-Miky.action_purr()
-Miky.action_growl()
+class Cat(Animal):
+    def say(self):
+        print('Meow!')
+
+
+class Dog(Animal):
+    def say(self):
+        print('Woof!')
+
+
+Momo = Cat('Momo', 2, 'White')
+print(Momo.name)
+print(Momo.age)
+print(Momo.color)
+Momo.say()
+print()
+Diego = Dog('Diego', 4, 'Brown')
+print(Diego.name)
+print(Diego.age)
+print(Diego.color)
+Diego.say()
 
 # Output:
 
-# Miky
-# white-black
-# 1
-# Мяяяууу!
-# Муррр...
-# Хсссссс!
+# Momo
+# 2
+# White
+# Meow!
+
+# Diego
+# 4
+# Brown
+# Woof!

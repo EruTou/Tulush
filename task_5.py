@@ -1,32 +1,19 @@
 # Задание 5
-# Создайте класс светофор (trafficlight). Реализуйте в нем метод, который будет переключать
-# цвета (red, green, yellow) по определенному времени: red = 1 сек, green 2 сек, yellow = 0.5 сек.
-# Подсказка:
-# Воспользуйтесь модулем time. В нем есть функция sleep
+# Создайте класс Clock со статичным методом Say_time, который будет выводить на экран текущее время.
+# Подсказка: для этого можете воспользоваться стандартной библиотекой time.
 # Решение:
 
-from time import sleep
+import time
 
 
-class trafficLight:
-    def __init__(self, color):
-        self.color = color
-
-    def changeColor(self):
-        for col, t in self.color.items():
-            sleep(t)
-            print(col)
+class Clock():
+    @staticmethod
+    def Say_time():
+        print(time.strftime("Сейчас %H:%M:%S", time.localtime()))
 
 
-traffic = trafficLight(color={
-    "Red": 1,
-    "Yellow": 0.5,
-    "Green": 2
-})
-traffic.changeColor()
+Clock.Say_time()
 
 # Output:
 
-# Red
-# Yellow
-# Green
+# Сейчас 21:18:02

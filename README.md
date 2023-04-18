@@ -1,6 +1,6 @@
 <!-- Subject: Development of software modules -->
-<!-- Lesson: 15 -->
+<!-- Lesson: 16 -->
 <!-- Programming language: Python -->
-<!-- Theme: Basics of OOP programming -->
+<!-- Theme: Inheritance -->
 <!-- Name: Tulush Ertine -->
 <!-- Group № 912 -->

@@ -1,83 +1,80 @@
 # Задание 3
-# Создайте класс Car, реализуйте в нем 5 атрибутов :
-# цвет,
-# марку,
-# кузов (сидан sedan, грузовик truck),
-# скорость,
-# тип коробки передач;
-# и 6 методов:
-# start - заставляет начинать движение
-# stop - останавливает машину
-# turn - поворачивает машину в какую-либо сторону, и выводит сообщение:" Машина повернула налево"
-# speed_up - ускоряет автомобиль
-# speed_down - замедляет автомобиль
-# beep - сигналит
-# Создайте два экземпляра класса truck и car. Продемонстрируйте работу всех методов
+# (А)
+#     Реализовать класс Stationery (канцелярия):
+#     определить в нём атрибут title (название) и абстрактный метод draw (отрисовка);
+#     создать три дочерних класса: Pen (ручка), Pencil (карандаш), Handle (маркер);
+#     в классе Pen добавьте атрибут color = 'blue';
+#     в каждом классе реализовать переопределение метода draw. Для каждого класса метод должен выводить уникальное сообщение, например: "Ручка пишет";
+#     создать экземпляры классов и проверить, что выведет описанный метод для каждого экземпляра.
+
+# (Б)
+#     Добавьте в класс Stationery метод класса set_color, который присваивает атрибут color класса Stationery;
+#     Вызовите метод set_color и установите color='yellow';
+#     Вызовите атрибуты color у классов Pen, Pencil, Handle. Что вы наблюдаете?
 # Решение:
 
-class Car:
-    def __init__(self, brand, body, transmission, speed=0, color='grey'):
-        self.brand = brand
-        self.body = body
-        self.transmission = transmission
-        self.color = color
-        self.speed = speed
-
-    def start(self):
-        self.speed = 10
-        print(f'{self.brand} speed = {self.speed} km/h')
-
-    def stop(self):
-        self.speed = 0
-        print(f'{self.brand} speed = {self.speed} km/h')
-
-    def turn(self, direction):
-        print(f'{self.brand} turned {direction}')
-
-    def speed_up(self, value=1):
-        self.speed += value
-        print(f'{self.brand} speed = {self.speed} km/h')
-
-    def speed_down(self, value=1):
-        if self.speed == 0:
-            print(f'{self.brand} speed = 0 km/h')
-        else:
-            self.speed -= value
-            print(f'{self.brand} speed = {self.speed} km/h')
-
-    def beep(self):
-        print(f'{self.brand} honks')
+from abc import ABC, abstractmethod
 
 
-truck = Car('Volvo', 'tractor', 'manual', 40, 'green')
-car = Car('Audi', 'coupe', 'auto', 80, 'aqua')
+class Stationery(ABC):
+    def __init__(self, title):
+        self.title = title
 
-truck.start()
-truck.speed_up(90)
-truck.beep()
-truck.speed_down(80)
-truck.turn('left')
-truck.stop()
+    @classmethod
+    def set_color(cls, color):
+        cls.color = color
 
-car.start()
-car.speed_up(313)
-car.beep()
-car.speed_down(280)
-car.turn('right')
-car.stop()
+    @abstractmethod
+    def draw(self):
+        pass
+
+
+class Pen(Stationery):
+    def __init__(self, title):
+        super().__init__(title)
+        self.color = 'blue'
+
+    def draw(self):
+        print('Ручка пишет')
+
+
+class Pencil(Stationery):
+    def __init__(self, title):
+        super().__init__(title)
+
+    def draw(self):
+        print('Карандаш наточен')
+
+
+class Handle(Stationery):
+    def __init__(self, title):
+        super().__init__(title)
+
+    def draw(self):
+        print('Маркер засох')
+
+
+# Объекты теперь имеют желтый цвет, исключая Pen с color = 'blue'
+Stationery.set_color('yellow')
+pen = Pen('Montblanc')
+print(pen.title)
+print(pen.color)
+print()
+pencil = Pencil('Cartier')
+print(pencil.title)
+print(pencil.color)
+print()
+handle = Handle('Pelikan')
+print(handle.title)
+print(handle.color)
 
 # Output:
 
-# Volvo speed = 10 km/h
-# Volvo speed = 100 km/h
-# Volvo honks
-# Volvo speed = 20 km/h
-# Volvo turned left
-# Volvo speed = 0 km/h
+# Montblanc
+# blue
 
-# Audi speed = 10 km/h
-# Audi speed = 323 km/h
-# Audi honks
-# Audi speed = 43 km/h
-# Audi turned right
-# Audi speed = 0 km/h
+# Cartier
+# yellow
+
+# Pelikan
+# yellow
