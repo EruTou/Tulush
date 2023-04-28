@@ -6,7 +6,7 @@
 -- Name: Tulush Ertine
 -- Group: 912
 
-USE `flowershop`;
+use vk;
 
 -- Задача 1
 -- Создайте динамический запрос, который будет выводить имя, email, город и
