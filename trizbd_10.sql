@@ -58,7 +58,7 @@ for each row
 begin
 	if new.birthday > curdate() then
 		set new.birthday = curdate();
-	end if //
+	end if;
 end //
 delimiter ;
 
@@ -81,7 +81,7 @@ delimiter ;
 show triggers; -- Проверка существования триггера
 
 
--- Задача 5 -
+-- Задача 5 +
 -- Создайте триггер, который проверяет на правильность ввод данных
 -- о пользователе при вставке нового пользователя ( fristname и lastname, email не должны быть пустыми,
 -- phone начинается с 7), и выводит на экран ошибку "Invalid user data"
@@ -92,43 +92,70 @@ create trigger check_userdata_input before insert on users
 for each row
 begin
 	if (
-		(new.firstname is null) and
-		(new.lastname is null) and
-		(new.email is null) and
+		(new.firstname is null) or
+		(new.lastname is null) or
+		(new.email is null) or
 		new.phone not like '7%'
 	   )
 	then signal sqlstate '45000' set message_text = 'Invalid user data';
-	end if //
+	end if;
 end //
 delimiter ;
 
 show triggers; -- Проверка существования триггера
 
-insert into users values (default, '', '', '', 9); -- Проверка работоспособности триггера провалилась, триггер - не рабочий
+insert into users values (default, '', '', '', 9); -- Проверка работоспособности триггера провалилась
 
 
--- Задача 6 -
+-- Задача 6 +
 -- Создайте функцию, которая удаляет пользователя по id вместе с его профилем
 
-drop function if exists funcname;
+drop function if exists delete_user_profile;
 delimiter //
-create function funcname before delete on tablename
+create function delete_user_profile(del_id_user int)
+returns tinytext reads sql data not deterministic
 begin
-	
+	delete from profiles where user_id = del_id_user;
+	delete from users where id = del_id_user;
+	return 'Removal completed';
 end //
 delimiter ;
 
+set @id_user = 101; -- Переменная для выборочного удаления пользователя
+insert into users values(101, 'Test', 'Test', 'test@gmail.com', 79998887777); -- Вставка тестового юзера в users
+insert into profiles values(101, 'm', '1999-10-10', default, default, 'Kazan'); -- Вставка тестового профиля юзера в profiles
+select * from users where id = 101; -- Проверка существования тестового юзера
+select * from profiles where user_id = 101; -- Проверка существования профиля тестового пользователя
 
--- Задача 7 -
+select delete_user_profile(@id_user); -- Вызов функции
+
+show function status where Name like 'delete_user_profile'; -- Проверка существования функции delete_user_profile
+
+
+-- Задача 7 +
 -- Создайте функцию hello(), которая будет возвращать приветствие, в зависимости от текущего времени суток.
 -- С 6:00 до 12:00 функция должна возвращать фразу "Доброе утро", с 12:00 до 18:00 функция должна возвращать
 -- фразу "Добрый день", с 18:00 до 00:00 — "Добрый вечер", с 00:00 до 6:00 — "Доброй ночи"
 
 drop function if exists hello;
 delimiter //
-create function hello before delete on tablename
+create function hello()
+returns tinytext reads sql data not deterministic
 begin
-	
+	declare greeting tinytext;
+	if hour(curtime()) between 6 and 12 then
+		set greeting = 'Доброе утро';
+	elseif hour(curtime()) between 12 and 18 then
+		set greeting = 'Добрый день';
+	elseif hour(curtime()) between 18 and 0 then
+		set greeting = 'Добрый вечер';
+	elseif hour(curtime()) between 0 and 6 then
+		set greeting = 'Доброй ночи';
+	end if;
+	return greeting;
 end //
 delimiter ;
+
+select hello(); -- Вызов функции hello для проверки работоспособности
+show function status where Name like 'hello'; -- Проверка сущестования функции
 
