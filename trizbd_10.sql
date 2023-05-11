@@ -104,7 +104,7 @@ delimiter ;
 
 show triggers; -- Проверка существования триггера
 
-insert into users values (default, '', '', '', 9); -- Проверка работоспособности триггера провалилась
+insert into users values (default, '', '', '', 9); -- Проверка работоспособности триггера
 
 
 -- Задача 6 +
