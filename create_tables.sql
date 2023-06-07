@@ -4,13 +4,13 @@ USE sports_reference;
 DROP TABLE IF EXISTS sports_type;
 CREATE TABLE sports_type (
     id_sport INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(50),
+    name VARCHAR(50) NOT NULL,
     PRIMARY KEY (id_sport)
 );
 DROP TABLE IF EXISTS cities;
 CREATE TABLE cities (
     id_city INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(50),
+    name VARCHAR(50) NOT NULL,
     PRIMARY KEY (id_city)
 );
 DROP TABLE IF EXISTS anthropological_data;
@@ -26,11 +26,11 @@ CREATE TABLE anthropological_data (
 DROP TABLE IF EXISTS personal_data;
 CREATE TABLE personal_data (
     id_personal_data INT NOT NULL AUTO_INCREMENT,
-    surname VARCHAR(50),
-    name VARCHAR(50),
-    middle_name VARCHAR(50),
-    nationality VARCHAR(50),
-    citizenship VARCHAR(50),
+    surname VARCHAR(50) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    middle_name VARCHAR(50) NOT NULL,
+    nationality VARCHAR(50) NOT NULL,
+    citizenship VARCHAR(50) NOT NULL,
     birthday DATE NOT NULL,
     city_id INT NOT NULL,
     PRIMARY KEY (id_personal_data),
@@ -39,7 +39,7 @@ CREATE TABLE personal_data (
 DROP TABLE IF EXISTS clubs;
 CREATE TABLE clubs (
     id_club INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(50),
+    name VARCHAR(50) NOT NULL,
     city_id INT NOT NULL,
     PRIMARY KEY (id_club),
     FOREIGN KEY (city_id) REFERENCES cities (id_city)
@@ -60,7 +60,7 @@ CREATE TABLE athletes (
 DROP TABLE IF EXISTS results;
 CREATE TABLE results (
     id_result INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(50),
+    name VARCHAR(50) NOT NULL,
     place INT NOT NULL,
     date DATE NOT NULL,
     time TIME NOT NULL,
